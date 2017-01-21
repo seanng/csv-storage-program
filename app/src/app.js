@@ -6,7 +6,7 @@
     'csvReader.query',
   ])
   .constant('AppSettings', {
-    apiUrl: 'http://localhost:3000'
+    apiUrl: ''
   })
 
 })();

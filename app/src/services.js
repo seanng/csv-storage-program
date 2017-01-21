@@ -6,22 +6,31 @@
   .factory('services', ($http, AppSettings)=>{
 
     const postToServer = (data) => {
-
-      const url = `${AppSettings.apiUrl}/api`,
+      const url = AppSettings.apiUrl+'/api',
         request = { method: 'POST', url, data};
 
-      // $http.post(request).then( succ => {
-      //   console.log('post success.', succ);
-      // }, fail => {
-      //   console.error(fail);
-      // })
-
+      $http(request)
+      .then( succ => {
+        console.log('post success.', succ);
+      })
+      .catch( fail => {
+        console.error(fail);
+      })
     }
 
-    const submitFile = (file) => {
+    const parseToJson = text => {
+      const json = Papa.parse(text, {
+        header: true
+      });
+      console.log('json', json);
+
+      postToServer(json)
+    }
+
+    const submitFile = file => {
       const reader = new FileReader;
       reader.readAsBinaryString(file);
-      reader.onload = () => postToServer(reader.result);
+      reader.onload = () => parseToJson(reader.result);
     }
 
 
