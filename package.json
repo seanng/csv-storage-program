@@ -18,6 +18,7 @@
   "homepage": "https://github.com/seanng/csv-storage-program#readme",
   "dependencies": {
     "angular": "^1.6.1",
+    "body-parser": "^1.16.0",
     "express": "^4.14.0"
   }
 }
