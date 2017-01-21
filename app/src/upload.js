@@ -3,21 +3,10 @@
   angular.module('csvReader.upload', [])
   .controller('UploadCtrl', UploadCtrl);
 
-  function UploadCtrl ($scope, $rootScope) {
-
-    let readerResult;
-
-    $scope.selectFile = (evt) => {
-      const file = evt.target.files[0],
-            reader = new FileReader;
-      reader.readAsBinaryString(file);
-      reader.onload = () => readerResult = reader.result;
-    }
-
-    $scope.submitFile = () => {
-      // upload(readerResult)
-      // console.log('submitted!')
-    }
+  function UploadCtrl ($scope, $rootScope, services) {
+    let file;
+    $scope.selectFile = (evt) => file = evt.target.files[0];
+    $scope.submitFile = () => services.submitFile(file);
 
   }
 
